@@ -1,124 +1,32 @@
-import React from 'react';
-import CardGrande from './components/CardGrande';
-import ImagemButton from './components/ImagemButton/ImagemButton';
-import styled, { createGlobalStyle } from 'styled-components'
-import imagemPerfil from "./img/DP-Brock.png"
-import { CardPequeno } from './component/CardPequeno';
-import downArrow from "./img/down-arrow.png"
-import iconePedra from "./img/rock-symbol.jpg"
-import iconeEstadio from "./img/pewter-gym.jpg"
-import iconeEmail from "./img/email"
-import iconePin from "../img/pin-endereco.png"
-import iconeFB from "./img/facebook-logo-3.png"
-import iconeTT from "./img/twitter-logo-1-1.png"
+import { useState } from "react";
 
-const GlobalStyle = createGlobalStyle`
-    *{
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }`
-
-const ContainerApp = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-  `
-
-const SectionPagina = styled.section`
-    width: 40vw;
-    margin: 10px 0;
-  `
-
-const Titulos = styled.h2`
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  `
+import { MessageForm } from "./components/MessageForm";
+import Message from "./components/Message";
+import { AppContainer, MessagesContainer } from "./AppStyled";
+import GlobalStyle from "./GlobalStyle";
 
 function App() {
-  const perfil = {
-    nome: "Brock",
-    imagem: imagemPerfil,
-    descricao: "Iniciei minha carreira como treinador pokémon, especializado em pokémons de pedra e, atualmente sou líder do estádio de Pewter City.",
-    email: "brock@pewtergym.com",
-    cidade: "Pewter",
-    experiencia: [
-      {
-        empresa: "Estádio de Pewter City",
-        icone: iconeEstadio,
-        descricao: "Atualmente sou o líder do Estádio de Pewter City, sou responsável pelo gerenciamento do estádio, batalhas e entrega da insígnia para treinadores pokémon desafiantes que chegam ao estádio."
+  const [messages, setMessages] = useState("");
 
-      },
-      {
-        empresa: "Treinador pokémon - freelancer",
-        icone: iconePedra,
-        descricao: "Fui treinador pokémon durante a juventude. Acompanhei Ash Ketchum e Misty na busca por insígnias. Participei da franquia de filmes e algumas temporadas da série original."
-      }
-    ]
-  }
+  const addMessage = (message) => {
+    const newListMessage = [...messages, message];
+    setMessages(newListMessage);
+  };
+
+  const deleteMessage = (message) => {
+    const filterResult = messages.filter((msg) => msg === message);
+    setMessages(filterResult);
+  };
+  const resultMessageMapping = messages.map((message, index) => (
+    <Message deleteMessage={deleteMessage} message={message} key={index} />
+  ));
+
   return (
-    <ContainerApp>
+    <AppContainer>
       <GlobalStyle />
-      <SectionPagina>
-        <Titulos>Dados pessoais</Titulos>
-        <CardGrande
-          imagem={perfil.image}
-          nome={perfil.nome}
-          descricao={perfil.descricao}
-        />
-
-        <ImagemButton
-          imagem={downArrow}
-          texto="Ver mais"
-        />
-      </SectionPagina>
-
-      <SectionPagina>
-        <CardPequeno
-          imagem={iconeEmail}
-          nome="E-mail:"
-          descricao={perfil}
-        />
-      </SectionPagina>
-      <SectionPagina>
-        <CardPequeno
-          image={iconePin}
-          name="Cidade:"
-          description={perfil.cidade}
-        />
-      </SectionPagina>
-
-
-      <SectionPagina>
-        <Titulos>Experiências profissionais</Titulos>
-        <CardGrande
-          imagem={perfil.experiencia.icone}
-          nome={perfil.experiencia.empresa}
-          descricao={perfil.experiencia.descricao}
-        />
-
-        <CardGrande
-          image={perfil.experiencia[1].icone}
-          name={perfil.experiencia[1].empresa}
-          descricao={perfil.experiencia[1].descricao}
-        />
-      </SectionPagina>
-
-      <SectionPagina>
-        <Titulos>Minhas redes sociais</Titulos>
-        <ImagemButton
-          imagem="./img/facebook-logo-3.png"
-          texto="Facebook"
-        />
-        <ImagemButton
-          imagem="./img/twitter-logo-1-1.png"
-          texto="Twitter"
-        />
-      </SectionPagina>
-    </ContainerApp>
+      <MessagesContainer>{resultMessageMapping}</MessagesContainer>
+      <MessageForm addMesage={addMessage} />
+    </AppContainer>
   );
 }
-
 export default App;
