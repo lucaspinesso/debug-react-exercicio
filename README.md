@@ -17,7 +17,7 @@ Neste repositório você terá acesso ao WhatsLab, um dos nossos projetos fundam
 A seguir, apresentamos um exemplo do funcionamento esperado do aplicativo, juntamente com suas funcionalidades.
 
 ### Funcionalidades:
-![exemplo de funcionamento](./public//speedcheck.gif)
+<img src="./public//speedcheck.gif" width="40%" height="40%"/>
 
 
 **Envio de Mensagens de Texto:** 
