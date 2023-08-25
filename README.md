@@ -12,7 +12,7 @@ Caso não lembre como funciona o processo de entrega, clique [**aqui**](https://
 
 ## Como eu vou executar os exercícios?
 
-Neste repositório você terão acesso ao WhatsLab, um dos nossos projetos fundamentados no React. Reconhecemos que o aplicativo atualmente enfrenta alguns problemas técnicos, e estamos buscando sua expertise para solucionar esses problemas. 
+Neste repositório você terá acesso ao WhatsLab, um dos nossos projetos fundamentados no React. Reconhecemos que o aplicativo atualmente enfrenta alguns problemas técnicos, e estamos buscando sua expertise para solucionar esses problemas. 
 
 A seguir, apresentamos um exemplo do funcionamento esperado do aplicativo, juntamente com suas funcionalidades.
 
