@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   MessageFormContainer,
-  sendButton,
+  SendButton,
   TextInput,
   UserSelect
 } from "./StyledMessageForm";
@@ -15,14 +15,15 @@ function MessageForm(props) {
   };
 
   const onChangeText = (event) => {
-    setTextValue(event.target.valeu);
+    setTextValue(event.target.value);
   };
 
   const onSendMessage = (event) => {
     event.preventDefault();
     const message = {
       user: userValue,
-      text: textValue
+      text: textValue,
+      id: Date.now()
     };
 
     props.addMessages(message);
@@ -32,8 +33,8 @@ function MessageForm(props) {
 
   return (
     // desafio: com a tag form é possível fazer o envio da mensagem com o botão "enter"
-    <MessageFormContainer>
-      <UserSelect type="text" onchange={onChangeUser} value={userValue}>
+    <MessageFormContainer onSubmit={onSendMessage}>
+      <UserSelect type="text" onChange={onChangeUser} value={userValue}>
         <option>eu</option>
         <option>Turma</option>
       </UserSelect>
@@ -44,7 +45,7 @@ function MessageForm(props) {
         onChange={onChangeText}
         value={textValue}
       />
-      <sendButton onSubmit={onSendMessage}> Enviar</sendButton>
+      <SendButton type="submit">Enviar</SendButton>
     </MessageFormContainer>
   );
 }
