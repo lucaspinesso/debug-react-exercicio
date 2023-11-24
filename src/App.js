@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import { MessageForm } from "./components/MessageForm";
-import Message from "./components/Message";
+import MessageForm from "./components/MassageForm/MessageForm";
+import { Message } from "./components/Message/Message";
 import { AppContainer, MessagesContainer } from "./AppStyled";
 import GlobalStyle from "./GlobalStyle";
 
 function App() {
-  const [messages, setMessages] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const addMessage = (message) => {
     const newListMessage = [...messages, message];
@@ -14,7 +14,7 @@ function App() {
   };
 
   const deleteMessage = (message) => {
-    const filterResult = messages.filter((msg) => msg === message);
+    const filterResult = messages.filter((msg) => msg.id !== message.id);
     setMessages(filterResult);
   };
   const resultMessageMapping = messages.map((message, index) => (
@@ -25,8 +25,9 @@ function App() {
     <AppContainer>
       <GlobalStyle />
       <MessagesContainer>{resultMessageMapping}</MessagesContainer>
-      <MessageForm addMesage={addMessage} />
+      <MessageForm addMessages={addMessage} />
     </AppContainer>
   );
 }
+
 export default App;
